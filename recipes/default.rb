@@ -1,18 +1,13 @@
 ancient_ubuntu=('ubuntu' == node['platform'] and Chef::VersionConstraint.new('<= 12.04').include?(node['platform_version']))
 
-if ancient_ubuntu # add backports repo to catch latest openssh-server
-# deb http://ppa.launchpad.net/li69422-staff/backports-for-precise/ubuntu precise main 
-# deb-src http://ppa.launchpad.net/li69422-staff/backports-for-precise/ubuntu precise main 
-# Signing key:
-# 4096R/AEA37004 (What is this?)
-# Fingerprint:
-# EF8E9E96D7D71790DAB56AC5456821A5AEA37004
-  apt_repository "openssh-server-backports" do
-    uri "http://ppa.launchpad.net/li69422-staff/backports-for-precise/ubuntu"
+if ancient_ubuntu
+  # use backports from our own repo
+  apt_repository "conjur-stable" do
+    uri "http://ppa.launchpad.net/conjur/stable/ubuntu"
     distribution "precise" 
     components ["main"]
     keyserver "keyserver.ubuntu.com"
-    key "AEA37004"
+    key "B22D14E6"
   end
   # enforce apt-get update to catch new repo
   execute "apt-get-update-periodic" do
