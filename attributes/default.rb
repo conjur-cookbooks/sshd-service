@@ -15,5 +15,5 @@ default['sshd_service']['packages'] = case node['platform_family']
   when 'freebsd'
     %w[]
   else
-    %w[openssh-client openssh-server]
+    ['openssh-client', 'openssh-server']
 end
