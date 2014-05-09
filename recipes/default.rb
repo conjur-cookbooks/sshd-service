@@ -16,10 +16,11 @@ if ancient_ubuntu
 end
 
 node.sshd_service.packages.each{|p| 
- 
+
   unless ancient_ubuntu and p=="openssh-server"
     package p
   else
+    # by default chef does not upgrade openssh-server installed from stock repo
     package p do 
       action :upgrade
     end 
