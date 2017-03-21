@@ -1,4 +1,4 @@
-# 1.2.0 (unreleased)
+# 1.2.0
 
 * Removed hard-coded assumption about newer Ubuntus running Upstart.
   The cookbook now lets Chef discover which init process is being used.
