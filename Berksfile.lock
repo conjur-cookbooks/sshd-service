@@ -1,0 +1,9 @@
+DEPENDENCIES
+  sshd-service
+    path: .
+    metadata: true
+
+GRAPH
+  apt (6.0.1)
+  sshd-service (1.2.0)
+    apt (>= 0.0.0)
